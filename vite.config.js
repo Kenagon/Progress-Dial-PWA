@@ -13,12 +13,12 @@ export default defineConfig({
       includeAssets: ['icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png'],
       manifest: {
         name: 'Pocket Progress',
-        short_name: 'Progress',
+        short_name: 'Pocket Progress',
         description: 'One-thumb savings/progress tracker with offline support.',
         theme_color: '#2563eb',
         background_color: '#ffffff',
-        start_url: '/',
-        scope: '/',
+        start_url: "/Progress-Dial-PWA/",
+        scope: "/Progress-Dial-PWA/",
         display: 'standalone',
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
