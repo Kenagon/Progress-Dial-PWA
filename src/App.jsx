@@ -581,20 +581,21 @@ export default function App() {
                         <div className="flex justify-end gap-4">
                             <button
                                 type="button"
-                                className="px-4 py-2 bg-gray-100 rounded-md"
-                                onClick={() => setShowClearAlert(false)}
-                            >
-                                {" "}
-                                Hell, no{" "}
-                            </button>
-                            <button
-                                type="button"
-                                className="px-4 py-2 bg-red-500 text-white rounded-md"
+                                className="px-4 py-2  bg-gray-100  rounded-md"
                                 onClick={clearAllEntries}
                             >
                                 {" "}
                                 Yes{" "}
                             </button>
+                            <button
+                                type="button"
+                                className="px-4 py-2 bg-red-500 text-white rounded-md"
+                                onClick={() => setShowClearAlert(false)}
+                            >
+                                {" "}
+                                Fuck, no!{" "}
+                            </button>
+
                         </div>
                     </div>
                 </div>
