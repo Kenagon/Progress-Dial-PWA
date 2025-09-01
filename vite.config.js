@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 // If deploying to GitHub Pages at https://<user>.github.io/<repo>,
 // set base to '/<repo>/' below. For root domains, leave as '/'.
 export default defineConfig({
-  base: '/',
+  base: '/Progress-Dial-PWA',
   plugins: [
     react(),
     VitePWA({

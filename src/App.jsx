@@ -96,47 +96,25 @@ export default function App() {
         const el = knobRef.current;
         if (!el) return undefined;
 
-        function getCenter(node) {
-            const r = node.getBoundingClientRect();
-            return { cx: r.left + r.width / 2, cy: r.top + r.height / 2 };
-        }
-
-        function angleForEvent(e, center) {
-            const clientX =
-                e.clientX ?? (e.touches && e.touches[0] && e.touches[0].clientX);
-            const clientY =
-                e.clientY ?? (e.touches && e.touches[0] && e.touches[0].clientY);
-            const x = clientX - center.cx;
-            const y = clientY - center.cy;
-            return Math.atan2(y, x);
-        }
-
         function onPointerDown(e) {
             e.preventDefault();
             pointerActive.current = true;
-            const center = getCenter(el);
-            lastAngle.current = angleForEvent(e, center);
+            lastAngle.current = e.clientX; // Track horizontal position
             window.addEventListener("pointermove", onPointerMove);
             window.addEventListener("pointerup", onPointerUp);
         }
 
         function onPointerMove(e) {
             if (!pointerActive.current) return;
-            const center = getCenter(el);
-            const ang = angleForEvent(e, center);
-            let delta = ang - lastAngle.current;
-            if (delta > Math.PI) delta -= 2 * Math.PI;
-            if (delta < -Math.PI) delta += 2 * Math.PI;
-            const ANGLE_PER_STEP = Math.PI / 6; // ~30deg per 1k
-            const steps = Math.round(delta / ANGLE_PER_STEP);
+            const deltaX = e.clientX - lastAngle.current; // Horizontal movement
+            const STEP_SIZE = 10; // Adjust step size for sensitivity
+            const steps = Math.round(deltaX / STEP_SIZE);
 
             if (steps !== 0) {
                 setKnobValue((v) =>
                     clamp(v + steps * 1000, 0, Math.max(1000, targetSum * 2))
                 );
-                lastAngle.current = ang;
-            } else {
-                lastAngle.current = ang;
+                lastAngle.current = e.clientX; // Update last position
             }
         }
 
